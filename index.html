@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业一</title>
+    <style>
+        .red {
+            border-color: red;
+            outline:none;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="value" v-bind:class="count">
+    <input type="button" value="发送" v-on:click="forward">
+    <div v-if="value">value对应的值: {{value}}</div>
+    <div>value对应的字数:{{value.length}}</div>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: function () {
+            return {value: ''}
+        },
+        methods: { 
+            forward: function() {
+                if (this.value==0) {
+                    alert("不能为空，请输入内容");
+                }else{
+                    alert('发送成功!');
+                    this.value="";
+                }
+            }            
+        },
+        computed: {
+            count: function() {
+                return{
+                    red:!this.value
+                }    
+            }
+        }
+    })
+</script>
+</html>
